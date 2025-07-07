@@ -8,7 +8,7 @@ window.addEventListener("scroll", () => {
 
 
     } else {
-        nav.style.height = "60px";
+        nav.style.height = "100px";
         logo.style.transform = "scale(1)";
 
     }
