@@ -16,28 +16,26 @@ window.addEventListener("scroll", () => {
 
 /* slider */
 const slides = document.querySelectorAll('.slide');
+const slidesContainer = document.querySelector('.slides');
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
+
 let current = 0;
 
-function showSlide(index)
-{
-	slides.forEach((slide, i)=> 
-	{
-		slide.classList.toggle('active', i == index)
-	});
+function updateSlidePosition() {
+    const slideWidth = slides[0].clientWidth;
+    slidesContainer.style.transform = `translateX(-${current * slideWidth}px)`;
 }
 
-prevButton.addEventListener('click',() =>
-{
-	current = (current === 0) ? slides.length -1 : current -1;
-	showSlide(current);
+prevButton.addEventListener('click', () => {
+    current = (current === 0) ? slides.length - 1 : current - 1;
+    updateSlidePosition();
 });
 
-nextButton.addEventListener('click', () =>
-{
-	current = (current === slides.length -1) ? 0: current + 1;
-	showSlide(current);
+nextButton.addEventListener('click', () => {
+    current = (current === slides.length - 1) ? 0 : current + 1;
+    updateSlidePosition();
 });
 
-showSlide(current);
+// Na starcie
+updateSlidePosition();
